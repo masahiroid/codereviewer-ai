@@ -1,0 +1,160 @@
+{
+  "name": "code-inspector",
+  "displayName": "OpenAI Code Inspector",
+  "description": "OpenAI APIを利用してコードの脆弱性と品質問題を診断するVS Code拡張です。",
+  "version": "0.1.3",
+  "publisher": "masahirocom",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/masahirocom/ai-code-reviewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/masahirocom/ai-code-reviewer/issues"
+  },
+  "homepage": "https://github.com/masahirocom/ai-code-reviewer#readme",
+  "engines": {
+    "vscode": "^1.98.0"
+  },
+  "categories": [
+    "Other",
+    "Testing"
+  ],
+  "activationEvents": [
+    "onView:codeInspector.controlPanel",
+    "onCommand:codeInspector.configureApiKey",
+    "onCommand:codeInspector.refreshModels",
+    "onCommand:codeInspector.scanCurrentFile",
+    "onCommand:codeInspector.scanSelectedFiles",
+    "onCommand:codeInspector.scanWorkspace",
+    "onCommand:codeInspector.openResults"
+  ],
+  "main": "./out/src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeInspector.configureApiKey",
+        "title": "Code Inspector: APIキーを設定"
+      },
+      {
+        "command": "codeInspector.refreshModels",
+        "title": "Code Inspector: モデル一覧を更新"
+      },
+      {
+        "command": "codeInspector.scanCurrentFile",
+        "title": "Code Inspector: 現在のファイルを診断"
+      },
+      {
+        "command": "codeInspector.scanSelectedFiles",
+        "title": "Code Inspector: 選択ファイルを診断"
+      },
+      {
+        "command": "codeInspector.scanWorkspace",
+        "title": "Code Inspector: ワークスペース全体を診断"
+      },
+      {
+        "command": "codeInspector.openResults",
+        "title": "Code Inspector: 結果ビューを開く"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codeInspector",
+          "title": "Code Inspector",
+          "icon": "media/shield.svg"
+        }
+      ]
+    },
+    "views": {
+      "codeInspector": [
+        {
+          "type": "webview",
+          "id": "codeInspector.controlPanel",
+          "name": "診断コントロール"
+        }
+      ]
+    },
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "codeInspector.scanSelectedFiles",
+          "group": "navigation@10",
+          "when": "resourceScheme == file"
+        },
+        {
+          "command": "codeInspector.scanWorkspace",
+          "group": "navigation@11",
+          "when": "explorerResourceIsFolder && resourceScheme == file"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "codeInspector.scanCurrentFile",
+          "group": "navigation@10"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Code Inspector",
+      "properties": {
+        "codeInspector.maxFileSizeKb": {
+          "type": "number",
+          "default": 128,
+          "minimum": 16,
+          "description": "診断対象に含める1ファイルあたりの最大サイズ(KB)。"
+        },
+        "codeInspector.maxFilesPerRequest": {
+          "type": "number",
+          "default": 8,
+          "minimum": 1,
+          "description": "1回のAPIリクエストに含める最大ファイル数。"
+        },
+        "codeInspector.maxConcurrentRequests": {
+          "type": "number",
+          "default": 2,
+          "minimum": 1,
+          "description": "並列送信するAPIリクエストの最大数。"
+        },
+        "codeInspector.logLevel": {
+          "type": "string",
+          "enum": [
+            "debug",
+            "info",
+            "error"
+          ],
+          "default": "info",
+          "description": "Code Inspectorのログ出力レベル。"
+        },
+        "codeInspector.additionalExcludeGlobs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "**/.env*",
+            "**/*.pem",
+            "**/*.key",
+            "**/*.p12",
+            "**/*.crt",
+            "**/*.cer"
+          ],
+          "description": "ワークスペース診断時に追加で除外するglobパターン。"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "test": "vitest run",
+    "check": "npm run build && npm run test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "@types/vscode": "^1.98.0",
+    "@vscode/vsce": "^3.7.1",
+    "typescript": "^5.8.2",
+    "vitest": "^3.1.1"
+  }
+}

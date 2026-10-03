@@ -1,5 +1,7 @@
 # OpenAI Code Inspector
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23122941.svg)](https://doi.org/10.5281/zenodo.23122941)
+
 OpenAI APIを利用して、VS Code上でコードの脆弱性と品質問題を診断する拡張です。
 
 ## 機能

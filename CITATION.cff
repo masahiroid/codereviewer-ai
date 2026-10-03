@@ -12,6 +12,7 @@ abstract: >-
   lines.
 repository-code: "https://github.com/masahiroid/codereviewer-ai"
 license: Apache-2.0
+doi: 10.5281/zenodo.23122941
 keywords:
   - code-review
   - vscode-extension

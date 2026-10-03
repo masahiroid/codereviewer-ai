@@ -1,0 +1,26 @@
+{
+  "title": "codereviewer-ai (OpenAI Code Inspector)",
+  "upload_type": "software",
+  "description": "A Visual Studio Code extension that diagnoses code vulnerabilities and quality issues using the OpenAI API, with results shown in a dedicated view that jumps to the relevant lines.",
+  "creators": [
+    {
+      "name": "Nakatsugawa, Masahiro",
+      "orcid": "0009-0000-3224-0103"
+    }
+  ],
+  "license": "apache-2.0",
+  "keywords": [
+    "code-review",
+    "vscode-extension",
+    "security",
+    "static-analysis",
+    "llm"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/masahiroid/codereviewer-ai",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

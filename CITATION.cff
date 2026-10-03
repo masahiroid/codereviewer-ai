@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+title: "codereviewer-ai (OpenAI Code Inspector)"
+type: software
+authors:
+  - family-names: Nakatsugawa
+    given-names: Masahiro
+    orcid: "https://orcid.org/0009-0000-3224-0103"
+abstract: >-
+  A Visual Studio Code extension that diagnoses code vulnerabilities and quality issues
+  using the OpenAI API, with results shown in a dedicated view that jumps to the relevant
+  lines.
+repository-code: "https://github.com/masahiroid/codereviewer-ai"
+license: Apache-2.0
+keywords:
+  - code-review
+  - vscode-extension
+  - security
+  - static-analysis
+  - llm
